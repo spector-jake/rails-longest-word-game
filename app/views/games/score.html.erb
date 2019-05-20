@@ -1,4 +1,9 @@
-<h1>Games#score</h1>
-<p><%= @response %></p>
+<div class="container mx-auto">
+  <h1>Games#score</h1>
+  <p><%= @response[:message] %></p>
 
-<%= link_to "Play again", new_path %>
+  <p>Your score is <%= session[:score] %></p>
+
+  <%= link_to "Play again", new_path %>
+</div>
+

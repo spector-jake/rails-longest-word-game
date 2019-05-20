@@ -1,14 +1,21 @@
-<h1>New Game</h1>
-<ul>
-  <% @letters.each do |letter| %>
-    <li><%= letter.capitalize %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1>New Game</h1>
+  <div class="flex d-flex justify-content-center">
+    <div class="row">
+      <ul>
+        <% @letters.each do |letter| %>
+          <li class="card p-1 m-1 bg-primary vertical-align-center" style="width: 18rem"><%= letter.capitalize %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="row">
+      <form action="/score" method="post" class="form-inline p-3">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <input id="grid" name="grid" type="hidden" value=<%= @letters.join('') %> />
+        <input type="text" name="attempt" placeholder="What is the longest word you can find?" class="form-control">
+        <input class="btn-primary" type="submit">
+      </form>
+    </div>
+  </div>
+</div>
 
-
-<form action="/score" method="post">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <input id="grid" name="grid" type="hidden" value=<%= @letters.join('') %> />
-  <input type="text" name="attempt" placeholder="What is the longest word you can find?">
-  <input class="button" type="submit">
-</form>
